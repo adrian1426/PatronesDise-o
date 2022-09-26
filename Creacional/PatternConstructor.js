@@ -1,8 +1,6 @@
-class PatternConstructor {
-  constructor() {
-    this.propiedad = 1;
-    this.metodo = () => { };
-  }
+function PatternConstructor() {
+  this.propiedad = 1;
+  this.metodo = () => { };
 };
 
 const instancia = new PatternConstructor();
