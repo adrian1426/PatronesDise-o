@@ -23,5 +23,31 @@ const traerPrimerInfante = (data) => {
 
 const traerPrimerInfante2 = (data) => dataInfante(format(head(data.filter(x => x.edad < 2))));
 
+
+const compose = (...fns) => x => fns.reduceRight((y, f) => f(y), x);
+const pipe = (...fns) => x => fns.reduce((y, f) => f(y), x);
+
+const filter = funcion => xs => xs.filter(funcion);
+
+const traceLog = x => y => console.log(x, y);
+
+const traerPrimerInfante3 = compose(
+  dataInfante,
+  format,
+  head,
+  filter(x => x.edad < 2)
+);
+
+const traerPrimerInfante4 = pipe(
+  filter(x => x.edad < 2),
+  traceLog('depues de filter'),
+  head,
+  format,
+  dataInfante
+);
+
+//logs
 console.log(traerPrimerInfante(users));
 console.log(traerPrimerInfante2(users));
+console.log(traerPrimerInfante3(users));
+console.log(traerPrimerInfante4(users));
